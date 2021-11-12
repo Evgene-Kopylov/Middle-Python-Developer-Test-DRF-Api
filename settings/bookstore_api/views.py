@@ -10,6 +10,7 @@ from .serializers import PublisherSerializer
 from .models import Author
 from .serializers import AuthorSerializer
 
+
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('id')[::-1]
     serializer_class = BookSerializer

@@ -5,10 +5,6 @@ from .models import Publisher
 from .models import Author
 
 
-
-
-
-
 class PublisherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Publisher
@@ -28,14 +24,13 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book
         fields = (
-            'id', 
-            'title', 
-            'annotation', 
+            'id',
+            'title',
+            'annotation',
             'isbn',
-            'publish_at', 
+            'publish_at',
             'total_sells',
             'total_views',
             'authors',
-            'publisher' 
-            )
-
+            'publisher'
+        )
