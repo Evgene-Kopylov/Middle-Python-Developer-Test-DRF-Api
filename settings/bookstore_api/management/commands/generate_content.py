@@ -14,30 +14,20 @@ class Command(BaseCommand):
     help = 'Generate bookstore_api db content'
 
     def handle(self, *args, **options):
-        # print('How many?')
-        # n = int(input())
-        n = 3
+        # n = 3
+        print('How many?')
+        n = int(input())
         for i in range(n):
             self.fake_book()
 
     def fake_book(self):
-        self.fake = faker.Faker()
+        self.fake = faker.Faker('Ru_RU')
         fake = self.fake
 
-        my_word_list = "Сказка Аленький цветочек - это литературное изложение \
-        Аксакова истории о Красавице и Чудовище. Любимая дочь попросила у \
-        отца-купца привезти ей Аленький цветочек, но оказалось, что самый \
-        красивый цветок рос в саду у чудовища. Отец сорвал цветочек и был \
-        вынужден отправить свою дочь жить к этому зверю. Девушка привязалась к \
-        чудовищу, своей любовью рассеяла магические чары и оказалось, что \
-        чудовище - это прекрасный принц..."
-        my_word_list = my_word_list.split()
-        fake.sentence(ext_word_list=my_word_list)
-
         book = Book(
-            title=fake.sentence(ext_word_list=my_word_list, nb_words=5),
-            annotation=fake.sentence(ext_word_list=my_word_list, nb_words=15),
-            isbn="9783161484100",
+            title=fake.sentence(nb_words=5),
+            annotation=fake.sentence(nb_words=15),
+            isbn=fake.isbn13(),
             publish_at=fake.date_between(
                 datetime.date.today() - datetime.timedelta(days=37000),
                 datetime.date.today()
@@ -76,7 +66,7 @@ class Command(BaseCommand):
             publisher = Publisher(
                 name=name,
                 description=fake.sentence(
-                    ext_word_list=my_word_list,
+                    ext_word_list=self.my_word_list,
                     nb_words=10)
             )
             publisher.save()
@@ -86,7 +76,7 @@ class Command(BaseCommand):
         fake = self.fake
         first_name = fake.first_name()
         last_name = fake.last_name()
-        second_name = fake.first_name()
+        second_name = fake.middle_name()
 
         author = Author.objects.filter(
             first_name=first_name,
