@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
 
 from .models import Book
 from .serializers import BookSerializer
+from .serializers import ShortBookSerializer
 
 from .models import Publisher
 from .serializers import PublisherSerializer
@@ -26,4 +31,18 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('-id')
     serializer_class = BookSerializer
 
+
+@api_view()
+def books_info(request, page, size):
+    books = Book.objects.all().order_by('id')
+    total = books.count()
+    i = total - (page * size)
+    k = i + size
+    serializer = ShortBookSerializer(books, many=True).data[i:k][::-1]
+    return Response({
+        'items': serializer,
+        'total': total,
+        'page': page,
+        'size': size
+        })
 

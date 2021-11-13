@@ -4,13 +4,14 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'Publishers', views.PublisherViewSet, basename='Publishers')
-router.register(r'Authors', views.AuthorViewSet, basename='Authors')
-router.register(r'Books', views.BookViewSet, basename='Books')
+router.register(r'Publisher', views.PublisherViewSet, basename='Publisher')
+router.register(r'Author', views.AuthorViewSet, basename='Author')
+router.register(r'Book', views.BookViewSet, basename='Book')
 
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('books_info/<int:page>/<int:size>/', views.books_info),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework'))
 ]
