@@ -61,6 +61,17 @@ class ShortPublisherSerializer(serializers.ModelSerializer):
         )
 
 
+class Short2PublisherSerializer(serializers.ModelSerializer):
+    '''use in publishers_info'''
+    class Meta:
+        model = Publisher
+        fields = (
+            'id',
+            'name',
+            'books_total'
+        )
+
+
 class ShortAuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -70,6 +81,18 @@ class ShortAuthorSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'second_name'
+        )
+
+class Short2AuthorSerializer(serializers.ModelSerializer):
+    '''use in authors_info'''
+    class Meta:
+        model = Author
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'second_name',
+            'books_total',
         )
 
 
