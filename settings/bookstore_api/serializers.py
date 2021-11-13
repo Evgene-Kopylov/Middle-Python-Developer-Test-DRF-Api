@@ -5,7 +5,7 @@ from .models import Publisher
 from .models import Author
 
 
-class ShortBookSerializer(serializers.HyperlinkedModelSerializer):
+class ShortBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = (
@@ -51,7 +51,7 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class ShortPublisherSerializer(serializers.HyperlinkedModelSerializer):
+class ShortPublisherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publisher
@@ -61,7 +61,7 @@ class ShortPublisherSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class ShortAuthorSerializer(serializers.HyperlinkedModelSerializer):
+class ShortAuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Author
