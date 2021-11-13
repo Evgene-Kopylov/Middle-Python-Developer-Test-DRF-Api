@@ -54,6 +54,10 @@ class Command(BaseCommand):
         if book.id % 3 == 0:
             author_2 = self.fake_author()
             book.authors.add(author_2)
+        if book.id % 2 == 0:
+            _id = fake.pyint(1, len(Author.objects.all()), 1)
+            author_3 = Author.objects.filter(id=_id).first()
+            book.authors.add(author_3)
 
         book.publisher = self.fake_publisher()
         book.save()

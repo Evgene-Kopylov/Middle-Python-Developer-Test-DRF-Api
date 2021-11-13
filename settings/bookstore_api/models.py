@@ -1,8 +1,7 @@
 from django.db import models
+from django.db.models import Count
 
 import datetime
-
-# Create your models here.
 
 
 class Publisher(models.Model):
@@ -10,17 +9,21 @@ class Publisher(models.Model):
     name = models.CharField(max_length=500)
     description = models.TextField()
 
-    def op(self):
-        return 99999999
-
     def books_total(self):
         return Book.objects.filter(publisher=self.id).count()
 
     def new_books(self):
-        return Book.objects.all().order_by("publish_at")
+        return Book.objects.filter(publisher__id=self.id
+            ).order_by("-publish_at"
+            ).values(
+            'id', 'title', 'annotation', 'publish_at', 'total_sells', 'total_views'
+            )[:5]
 
     def hot_books(self):
-        return Book.objects.all().order_by("total_views")
+        return Book.objects.filter(publisher__id=self.id
+            ).order_by("-total_views").values(
+            'id', 'title', 'annotation', 'publish_at', 'total_sells', 'total_views'
+            )[:5]
 
 
 class Author(models.Model):
@@ -29,13 +32,33 @@ class Author(models.Model):
     second_name = models.CharField(max_length=500, blank=True)
 
     def books_total(self):
-        pass
+        return Book.objects.filter(authors__id=self.id).count()
 
     def new_books(self):
-        pass
+        books = Book.objects.filter(authors__id=self.id
+            ).filter(publish_at__range=
+            [datetime.date.today() - datetime.timedelta(days=180),
+            datetime.date.today()]).order_by('publish_at')[::-1][:5]
+        return [{
+            'id':b.id,
+            'title':b.title,
+            'annotation':b.annotation,
+            'publish_at':b.publish_at,
+            'total_sells':b.total_sells,
+            'total_views':b.total_views
+            } for b in books]
 
     def hot_books(self):
-        pass
+        books = Book.objects.filter(authors__id=self.id
+            ).order_by('total_sells')[::-1][:5]
+        return [{
+            'id':b.id,
+            'title':b.title,
+            'annotation':b.annotation,
+            'publish_at':b.publish_at,
+            'total_sells':b.total_sells,
+            'total_views':b.total_views
+            } for b in books]
 
 
 class Book(models.Model):

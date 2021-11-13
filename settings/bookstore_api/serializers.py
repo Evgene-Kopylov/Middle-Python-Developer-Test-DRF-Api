@@ -6,15 +6,32 @@ from .models import Author
 
 
 class PublisherSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Publisher
-        fields = ('id', 'name')
+        fields = (
+            'id',
+            'name',
+            'description',
+            'books_total',
+            'new_books',
+            'hot_books',
+        )
 
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Author
-        fields = ('id', 'last_name', 'first_name', 'second_name')
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'second_name',
+            'books_total',
+            'new_books',
+            'hot_books'
+        )
 
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):

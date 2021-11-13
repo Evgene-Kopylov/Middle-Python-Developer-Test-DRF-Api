@@ -22,5 +22,5 @@ class PublisherViewSet(viewsets.ModelViewSet):
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-    queryset = Author.objects.all().order_by('last_name')
+    queryset = Author.objects.all().order_by('id')[::-1]
     serializer_class = AuthorSerializer
