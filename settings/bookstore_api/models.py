@@ -20,7 +20,7 @@ class Publisher(models.Model):
 
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=500)
+    first_name = models.CharField(max_length=500, default='Unknown')
     last_name = models.CharField(max_length=500, blank=True)
     second_name = models.CharField(max_length=500, blank=True)
 

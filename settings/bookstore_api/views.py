@@ -11,10 +11,6 @@ from .models import Author
 from .serializers import AuthorSerializer
 
 
-class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all().order_by('id')[::-1]
-    serializer_class = BookSerializer
-
 
 class PublisherViewSet(viewsets.ModelViewSet):
     queryset = Publisher.objects.all().order_by('name')
@@ -22,5 +18,12 @@ class PublisherViewSet(viewsets.ModelViewSet):
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-    queryset = Author.objects.all().order_by('id')[::-1]
+    queryset = Author.objects.all().order_by('-id')
     serializer_class = AuthorSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all().order_by('-id')
+    serializer_class = BookSerializer
+
+
