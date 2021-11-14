@@ -18,7 +18,7 @@ class ShortBookSerializer(serializers.ModelSerializer):
         )
 
 
-class PublisherSerializer(serializers.HyperlinkedModelSerializer):
+class PublisherSerializer(serializers.ModelSerializer):
     new_books = ShortBookSerializer(many=True)
     hot_books = ShortBookSerializer(many=True)
 
@@ -34,7 +34,9 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
-class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+
+
+class AuthorSerializer(serializers.ModelSerializer):
     new_books = ShortBookSerializer(many=True)
     hot_books = ShortBookSerializer(many=True)
 
@@ -96,7 +98,7 @@ class Short2AuthorSerializer(serializers.ModelSerializer):
         )
 
 
-class BookSerializer(serializers.HyperlinkedModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     authors = ShortAuthorSerializer(many=True)
     publisher = ShortPublisherSerializer()
 
