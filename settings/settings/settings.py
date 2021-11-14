@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'bookstore_api',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
