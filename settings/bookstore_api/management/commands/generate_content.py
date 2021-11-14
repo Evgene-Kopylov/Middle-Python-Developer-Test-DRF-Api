@@ -25,7 +25,7 @@ class Command(BaseCommand):
         fake = self.fake
 
         book = Book(
-            title=fake.sentence(nb_words=5),
+            title=fake.sentence(nb_words=3),
             annotation=fake.sentence(nb_words=15),
             isbn=fake.isbn13(),
             publish_at=fake.date_between(
