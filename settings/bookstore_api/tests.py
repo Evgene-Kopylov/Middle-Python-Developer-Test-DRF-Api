@@ -4,6 +4,7 @@ from rest_framework import status
 
 from .factory import MyFactory
 
+from .models import Book
 
 class BookstoreApiTestCase(APITestCase):
 
@@ -36,9 +37,9 @@ class BookstoreApiTestCase(APITestCase):
 
     def test_post_author(self):
         data = {
-            "first_name": "Александр",
-            "last_name": "Пушкин",
-            "second_name": "Сергеевич"
+            "first_name": "Алекс",
+            "last_name": "Егого",
+            "second_name": "Серг"
         }
 
         response = self.client.post("/items/edit_author/", data)
@@ -61,8 +62,40 @@ class BookstoreApiTestCase(APITestCase):
         response = self.client.post("/items/edit_book/", data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_patch_publisher(self):
+        data = {
+            "name": "RT",
+            "description": "oppa ono to"
+        }
+        response = self.client.patch("/items/edit_publisher/1/", data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_patch_author(self):
+        data = {
+            "first_name": "Александр",
+            "last_name": "Пушкин",
+            "second_name": "Сергеевич",
+        }
+        response = self.client.patch("/items/edit_author/1/", data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_patch_book(self):
+        data = {
+            "title": "Book title",
+            "annotation": "Book annotation...",
+        }
+        response = self.client.patch("/items/edit_book/1/", data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_delete_publisher(self):
+        response = self.client.delete("/items/edit_publisher/1/")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
+    def test_delete_author(self):
+        response = self.client.delete("/items/edit_author/1/")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_delete_book(self):
+        response = self.client.delete("/items/edit_book/1/")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
