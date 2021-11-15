@@ -34,6 +34,14 @@ class PublisherSerializer(serializers.ModelSerializer):
         )
 
 
+class Edit_PublisherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Publisher
+        fields = (
+            'id',
+            'name',
+            'description',
+        )
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -50,6 +58,17 @@ class AuthorSerializer(serializers.ModelSerializer):
             'books_total',
             'new_books',
             'hot_books'
+        )
+
+
+class Edit_AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'second_name',
         )
 
 

@@ -8,9 +8,11 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 router = routers.DefaultRouter()
-router.register(r'Publisher', views.PublisherViewSet, basename='Publisher')
-router.register(r'Author', views.AuthorViewSet, basename='Author')
-router.register(r'Book', views.BookViewSet, basename='Book')
+router.register(r'publisher', views.PublisherViewSet, basename='publisher')
+router.register(r'edit_publisher', views.Edit_PublisherViewSet, basename='edit_publisher')
+router.register(r'author', views.AuthorViewSet, basename='author')
+router.register(r'edit_author', views.Edit_AuthorViewSet, basename='edit_author')
+router.register(r'book', views.BookViewSet, basename='book')
 
 
 schema_view = get_schema_view(

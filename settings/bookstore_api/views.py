@@ -7,34 +7,58 @@ from rest_framework.response import Response
 
 from .models import Book
 from .serializers import BookSerializer
+# from .serializers import Edit_BookSerializer
 from .serializers import ShortBookSerializer
 
 from .models import Publisher
 from .serializers import PublisherSerializer
+from .serializers import Edit_PublisherSerializer
 from .serializers import Short2PublisherSerializer
 
 from .models import Author
 from .serializers import AuthorSerializer
+from .serializers import Edit_AuthorSerializer
 from .serializers import Short2AuthorSerializer
 
 
 
 class PublisherViewSet(viewsets.ModelViewSet):
-    queryset = Publisher.objects.all().order_by('name')
+    queryset = Publisher.objects.all().order_by('-id')
     serializer_class = PublisherSerializer
+    http_method_names = ['get']
+
+
+class Edit_PublisherViewSet(viewsets.ModelViewSet):
+    queryset = Publisher.objects.all().order_by('-id')
+    serializer_class = Edit_PublisherSerializer
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all().order_by('-id')
     serializer_class = AuthorSerializer
+    http_method_names = ['get']
+
+
+class Edit_AuthorViewSet(viewsets.ModelViewSet):
+    queryset = Author.objects.all().order_by('-id')
+    serializer_class = Edit_AuthorSerializer
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('-id')
     serializer_class = BookSerializer
+    http_method_names = ['get']
 
 
-@api_view()
+# class Edit_BookViewSet(viewsets.ModelViewSet):
+#     queryset = Book.objects.all().order_by('-id')
+#     serializer_class = BookSerializer
+#     http_method_names = ['get', 'post', 'patch', 'delete']
+
+
+@api_view(['get'])
 def publishers_info(request, page, size):
     publishers = Publisher.objects.all().order_by('id')
     total = publishers.count()
@@ -50,7 +74,7 @@ def publishers_info(request, page, size):
         })
 
 
-@api_view()
+@api_view(['get'])
 def authors_info(request, page, size):
     authors = Author.objects.all().order_by('id')
     total = authors.count()
@@ -66,7 +90,7 @@ def authors_info(request, page, size):
         })
 
 
-@api_view()
+@api_view(['get'])
 def books_info(request, page, size):
     books = Book.objects.all().order_by('id')
     total = books.count()
