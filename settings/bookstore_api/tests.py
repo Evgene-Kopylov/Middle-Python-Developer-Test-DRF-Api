@@ -10,7 +10,7 @@ class BookstoreApiTestCase(APITestCase):
     def setUp(self):
         self.client = APIClient()
         f = MyFactory()
-        f.fake_all()
+        f.fake_it(5)
 
     def test_get_publisher(self):
         response = self.client.get("/items/edit_publisher/1/")

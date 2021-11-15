@@ -47,7 +47,7 @@ class Book(models.Model):
     total_sells = models.IntegerField(default=0)
     total_views = models.IntegerField(default=0)
     authors = models.ManyToManyField(Author,
-                                     blank=True, null=True)
+                                     blank=True)
     publisher = models.ForeignKey(Publisher,
                                   on_delete=models.CASCADE,
-                                  blank=True, null=True)
+                                  blank=True)

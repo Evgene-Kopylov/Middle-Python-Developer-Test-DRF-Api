@@ -13,7 +13,12 @@ from bookstore_api.models import Book
 
 class MyFactory:
 
-    def fake_all(self):
+    def fake_it(self, n):
+        for i in range(n):
+            self.fake_book()
+
+
+    def fake_book(self):
         self.fake = faker.Faker('Ru_RU')
         fake = self.fake
 
@@ -44,8 +49,6 @@ class MyFactory:
 
         book.publisher = self.fake_publisher()
         book.save()
-        return book
-
 
     def fake_publisher(self):
         publisher_provider = DynamicProvider(
