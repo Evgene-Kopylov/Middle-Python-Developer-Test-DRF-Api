@@ -59,7 +59,7 @@ class Edit_BookViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['get'])
-def publishers_info(request, page, size):
+def publishers_list(request, page, size):
     publishers = Publisher.objects.all().order_by('id')
     total = publishers.count()
     i = total - (page * size)
@@ -75,7 +75,7 @@ def publishers_info(request, page, size):
 
 
 @api_view(['get'])
-def authors_info(request, page, size):
+def authors_list(request, page, size):
     authors = Author.objects.all().order_by('id')
     total = authors.count()
     i = total - (page * size)
@@ -91,7 +91,7 @@ def authors_info(request, page, size):
 
 
 @api_view(['get'])
-def books_info(request, page, size):
+def books_list(request, page, size):
     books = Book.objects.all().order_by('id')
     total = books.count()
     i = total - (page * size)

@@ -33,9 +33,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('items/', include(router.urls)),
-    path('publishers_info/<int:page>/<int:size>/', views.publishers_info),
-    path('authors_info/<int:page>/<int:size>/', views.authors_info),
-    path('books_info/<int:page>/<int:size>/', views.books_info),
+    path('publishers_list/<int:page>/<int:size>/', views.publishers_list),
+    path('authors_list/<int:page>/<int:size>/', views.authors_list),
+    path('books_list/<int:page>/<int:size>/', views.books_list),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework')),
 

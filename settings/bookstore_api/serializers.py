@@ -83,7 +83,7 @@ class ShortPublisherSerializer(serializers.ModelSerializer):
 
 
 class Short2PublisherSerializer(serializers.ModelSerializer):
-    '''use in publishers_info'''
+    '''use in publishers_list'''
     class Meta:
         model = Publisher
         fields = (
@@ -105,7 +105,7 @@ class ShortAuthorSerializer(serializers.ModelSerializer):
         )
 
 class Short2AuthorSerializer(serializers.ModelSerializer):
-    '''use in authors_info'''
+    '''use in authors_list'''
     class Meta:
         model = Author
         fields = (
