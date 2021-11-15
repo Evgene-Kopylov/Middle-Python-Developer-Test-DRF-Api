@@ -42,8 +42,8 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=500)
     annotation = models.TextField()
-    isbn = models.CharField(default="9783161484100", max_length=500)
-    publish_at = models.DateField(default=datetime.date.today())
+    isbn = models.CharField(default="0000000000000", max_length=500)
+    publish_at = models.DateField(default="2021-11-15")
     total_sells = models.IntegerField(default=0)
     total_views = models.IntegerField(default=0)
     authors = models.ManyToManyField(Author,
