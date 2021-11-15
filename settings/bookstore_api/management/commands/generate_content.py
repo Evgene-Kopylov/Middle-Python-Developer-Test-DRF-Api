@@ -65,9 +65,7 @@ class Command(BaseCommand):
         if not publisher:
             publisher = Publisher(
                 name=name,
-                description=fake.sentence(
-                    ext_word_list=self.my_word_list,
-                    nb_words=10)
+                description=fake.sentence(nb_words=10)
             )
             publisher.save()
         return publisher
