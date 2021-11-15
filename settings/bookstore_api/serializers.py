@@ -134,3 +134,26 @@ class BookSerializer(serializers.ModelSerializer):
             'authors',
             'publisher'
         )
+
+
+class Edit_BookSerializer(serializers.ModelSerializer):
+    authors = serializers.PrimaryKeyRelatedField(
+        many=True, 
+        queryset=Author.objects.all())
+    
+    publisher = serializers.PrimaryKeyRelatedField( 
+        queryset=Publisher.objects.all())
+
+    class Meta:
+        model = Book
+        fields = (
+            'id',
+            'title',
+            'annotation',
+            'isbn',
+            'publish_at',
+            'total_sells',
+            'total_views',
+            'authors',
+            'publisher'
+        )

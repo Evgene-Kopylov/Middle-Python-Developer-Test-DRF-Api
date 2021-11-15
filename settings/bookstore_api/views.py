@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from .models import Book
 from .serializers import BookSerializer
-# from .serializers import Edit_BookSerializer
+from .serializers import Edit_BookSerializer
 from .serializers import ShortBookSerializer
 
 from .models import Publisher
@@ -52,10 +52,10 @@ class BookViewSet(viewsets.ModelViewSet):
     http_method_names = ['get']
 
 
-# class Edit_BookViewSet(viewsets.ModelViewSet):
-#     queryset = Book.objects.all().order_by('-id')
-#     serializer_class = BookSerializer
-#     http_method_names = ['get', 'post', 'patch', 'delete']
+class Edit_BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all().order_by('-id')
+    serializer_class = Edit_BookSerializer
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
 
 @api_view(['get'])

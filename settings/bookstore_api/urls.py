@@ -13,6 +13,7 @@ router.register(r'edit_publisher', views.Edit_PublisherViewSet, basename='edit_p
 router.register(r'author', views.AuthorViewSet, basename='author')
 router.register(r'edit_author', views.Edit_AuthorViewSet, basename='edit_author')
 router.register(r'book', views.BookViewSet, basename='book')
+router.register(r'edit_book', views.Edit_BookViewSet, basename='edit_book')
 
 
 schema_view = get_schema_view(
