@@ -1,9 +1,7 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-
 
 from .models import Book
 from .serializers import BookSerializer
@@ -19,7 +17,6 @@ from .models import Author
 from .serializers import AuthorSerializer
 from .serializers import Edit_AuthorSerializer
 from .serializers import Short2AuthorSerializer
-
 
 
 class PublisherViewSet(viewsets.ModelViewSet):
@@ -63,7 +60,8 @@ def list_publishers(request, page, size):
     publishers = Publisher.objects.all().order_by('id')
     total = publishers.count()
     i = total - (page * size)
-    if i < 0: i = 0
+    if i < 0:
+        i = 0
     k = i + size
     serializer = Short2PublisherSerializer(publishers, many=True).data[i:k][::-1]
     return Response({
@@ -71,7 +69,7 @@ def list_publishers(request, page, size):
         'total': total,
         'page': page,
         'size': size
-        })
+    })
 
 
 @api_view(['get'])
@@ -79,7 +77,8 @@ def list_authors(request, page, size):
     authors = Author.objects.all().order_by('id')
     total = authors.count()
     i = total - (page * size)
-    if i < 0: i = 0
+    if i < 0:
+        i = 0
     k = i + size
     serializer = Short2AuthorSerializer(authors, many=True).data[i:k][::-1]
     return Response({
@@ -87,7 +86,7 @@ def list_authors(request, page, size):
         'total': total,
         'page': page,
         'size': size
-        })
+    })
 
 
 @api_view(['get'])
@@ -95,7 +94,7 @@ def list_books(request, page, size):
     books = Book.objects.all().order_by('id')
     total = books.count()
     i = total - (page * size)
-    if i < 0: i = 0
+    i = 0 if i < 0 else i
     k = i + size
     serializer = ShortBookSerializer(books, many=True).data[i:k][::-1]
     return Response({
@@ -103,5 +102,4 @@ def list_books(request, page, size):
         'total': total,
         'page': page,
         'size': size
-        })
-
+    })

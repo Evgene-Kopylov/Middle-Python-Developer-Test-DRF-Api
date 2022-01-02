@@ -1,6 +1,7 @@
+import faker
 from django.core.management.base import BaseCommand, CommandError
 
-from factory.faker import faker
+# from factory.faker import faker
 from faker.providers import DynamicProvider
 
 import datetime

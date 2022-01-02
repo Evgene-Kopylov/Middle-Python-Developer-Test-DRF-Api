@@ -3,6 +3,11 @@
 
 ## Запуск
 
+```console
+pip install -r settings/requirements.txt
+```
+
+
 В дирректории проекта Middle-Python-Developer-Test-DRF-Api перейти settings и запустить проект 
 
 ```console

@@ -1,25 +1,19 @@
-from django.core.management.base import BaseCommand, CommandError
-
-from factory.faker import faker
+import faker
 from faker.providers import DynamicProvider
-
 import datetime
-
-from bookstore_api.models import Publisher
-from bookstore_api.models import Author
-from bookstore_api.models import Book
-
+from settings.bookstore_api.models import Book, Author, Publisher
 
 
 class MyFactory:
+
+    def __init__(self):
+        self.fake = faker.Faker('Ru_RU')
 
     def fake_it(self, n):
         for i in range(n):
             self.fake_book()
 
-
     def fake_book(self):
-        self.fake = faker.Faker('Ru_RU')
         fake = self.fake
 
         book = Book(
@@ -85,4 +79,3 @@ class MyFactory:
                 second_name=second_name)
             author.save()
         return author
-
