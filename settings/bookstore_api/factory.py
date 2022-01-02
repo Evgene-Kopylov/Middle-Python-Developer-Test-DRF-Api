@@ -9,11 +9,11 @@ class MyFactory:
     def __init__(self):
         self.fake = faker.Faker('Ru_RU')
 
-    def fake_it(self, n):
+    def fake_it(self, n) -> None:
         for i in range(n):
             self.fake_book()
 
-    def fake_book(self):
+    def fake_book(self) -> Book:
         fake = self.fake
 
         book = Book(
@@ -43,8 +43,9 @@ class MyFactory:
 
         book.publisher = self.fake_publisher()
         book.save()
+        return book
 
-    def fake_publisher(self):
+    def fake_publisher(self) -> Publisher:
         publisher_provider = DynamicProvider(
             provider_name="publisher",
             elements=["РАН", "ЭКСМО", "Заря", "Донцова инкорпорейтед.", "РПЦ"],
@@ -62,7 +63,7 @@ class MyFactory:
             publisher.save()
         return publisher
 
-    def fake_author(self):
+    def fake_author(self) -> Author:
         fake = self.fake
         first_name = fake.first_name()
         last_name = fake.last_name()
