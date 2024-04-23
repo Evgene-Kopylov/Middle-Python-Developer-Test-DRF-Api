@@ -3,6 +3,8 @@
 
 ## Запуск
 
+- Поместить `SECRET_KEY` в окружение.
+
 ```console
 pip install -r settings/requirements.txt
 ```
